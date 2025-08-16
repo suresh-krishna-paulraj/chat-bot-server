@@ -1,5 +1,4 @@
 import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
-import { ToolNode } from "@langchain/langgraph/prebuilt";
 import {
   ChatGoogleGenerativeAI,
   GoogleGenerativeAIEmbeddings,
