@@ -7,7 +7,7 @@ import { PineconeStore } from "@langchain/pinecone";
 import { Pinecone } from "@pinecone-database/pinecone";
 import dotenv from "dotenv";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
-import { userPrompt } from "../prompt.js";
+import { systemPrompt, userPrompt } from "../prompt.js";
 import calculatorTool from "../tools/calculator.js";
 import type { LoadResponse, QueryResponse } from "../types/index.js";
 import { xTools } from "../tools/x.js";
@@ -101,6 +101,10 @@ export class LangChainService {
       }).bindTools(allTools);
 
       const response = await ai.invoke([
+        {
+          role: "system",
+          content: systemPrompt,
+        },
         {
           role: "user",
           content: userPrompt(context, question, chatHistory),
